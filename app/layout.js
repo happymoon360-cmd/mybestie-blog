@@ -24,7 +24,7 @@ export const metadata = {
         siteName: 'Mybestie 카라이프 라운지',
     },
     verification: {
-        google: '7eFoekPo5ta81OtvLR-vRaT4ZKAG6Sf2RLDAnXCzJZ4',
+        google: 'rMBBt4euga4OlJH_pGFLv_Fo47K9nPAGd5B9_15-Otk',
     },
 };
 
