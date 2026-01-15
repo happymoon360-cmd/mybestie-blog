@@ -55,6 +55,9 @@ image: '/images/posts/2026-civil-servant-salary-and-car-item/image-1.png'
 - [2026 전기차 보조금 절벽, 유지비 0원 꿀팁](/blog/2026-ev-subsidy-saving-tip)
 - [모르는 번호로 오는 스팸 문자, 범인은 유리창에 있다?](/blog/spam-text-parking-number)
 
+### 참고 사이트
+- [인사혁신처 공무원 인사제도 (봉급표)](https://www.mpm.go.kr)
+
 #2026공무원봉급표 #솔라휠 #차량용방향제 #절약꿀팁 #사회초년생추천 #주차번호판 #가성비차량용품
 
 <a href="https://smartstore.naver.com/coolgrandpaw/products/9408767137" class="productLink" target="_blank">

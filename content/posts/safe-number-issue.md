@@ -66,6 +66,9 @@ image: '/images/posts/migrated/image-1.png'
 
 함께 읽기: [모르는 번호로 오는 스팸 문자, 범인은 유리창에 있다?](/blog/spam-text-parking-number)
 
+### 참고 사이트
+- [개인정보보호위원회 개인정보보호 포털](https://www.privacy.go.kr)
+
 #태그: #주차번호판 #안심번호 #개인정보보호 #솔라휠 #차량용방향제 #카라이프 #자동차보안 #자동차히터냄새 #차에어컨냄새 #30대자동차소품
 
 ![자동차 인테리어 소품 추천](/images/posts/migrated/image-9.png)

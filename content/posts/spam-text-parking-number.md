@@ -41,6 +41,9 @@ A. 태양광 에너지를 실시간으로 이용하기 때문에 빛이 있는 �
 - [2026 공무원 봉급표 공개와 차량 유지비 절약 꿀팁](/blog/2026-civil-servant-salary-and-car-item)
 - [안심번호로 내 개인정보 철벽 방어하기](/blog/safe-number-issue)
 
+### 참고 사이트
+- [KISA 개인정보보호 포털 (생활 속 개인정보 예방)](https://www.privacy.go.kr)
+
 #태그: #주차번호판 #개인정보보호 #차량용방향제 #솔라휠 #스팸차단 #여성운전자필수템 #카라이프 #자동차인테리어 #새차선물
 
 <a href="https://smartstore.naver.com/coolgrandpaw/products/9408767137" class="productLink" target="_blank">
