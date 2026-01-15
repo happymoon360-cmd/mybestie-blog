@@ -1,0 +1,148 @@
+.header {
+    margin-bottom: 6rem;
+    /* Huge whitespace for impact */
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 3.5rem;
+    /* Massive, thin typography */
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.03em;
+    color: var(--color-fg);
+}
+
+.header p {
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    font-weight: 400;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+
+/* Responsive Headings */
+@media (max-width: 768px) {
+    .header {
+        margin-bottom: 3rem;
+        text-align: left;
+    }
+
+    .header h1 {
+        font-size: 2.5rem;
+    }
+
+    .header p {
+        font-size: 1.125rem;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+        row-gap: 4rem;
+        /* More breathing room */
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    /* Smooth, Apple-like curvature */
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    /* Elegant easing */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: var(--card-shadow);
+    position: relative;
+}
+
+/* Metallic Sheen Effect on Hover */
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--color-secondary);
+    /* Highlight border like chrome */
+}
+
+.imageContainer {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    /* More classic photo aspect */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bg);
+}
+
+.thumbnail {
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card:hover .thumbnail {
+    transform: scale(1.08);
+}
+
+.cardContent {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+    color: var(--color-fg);
+    letter-spacing: -0.015em;
+}
+
+.description {
+    font-size: 1.0625rem;
+    /* 17px, standard Apple body size */
+    color: var(--color-secondary);
+    margin-bottom: auto;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+    margin-top: 2rem;
+    opacity: 0.8;
+}
+
+.readMore {
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}

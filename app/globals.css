@@ -1,0 +1,201 @@
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --max-width: 1400px;
+  /* Wider for Apple-like spaciousness */
+
+  /* Palette: Metallic & Deep Black */
+  --color-fg: #1d1d1f;
+  /* Apple's near-black text */
+  --color-bg: #f5f5f7;
+  /* Apple's signature light gray background */
+
+  --color-accent: #000000;
+  /* Deep Black accent */
+  --color-secondary: #86868b;
+  /* Apple's secondary text gray */
+  --color-border: #d2d2d7;
+
+  --header-height: 52px;
+  /* Sleeker, shorter header */
+
+  /* Card Design: Metallic Precision */
+  --card-bg: #ffffff;
+  --card-border: #e5e5e5;
+  /* Very subtle thin border */
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.04);
+  /* Soft, precise shadow */
+  --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.08), 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-fg: #f5f5f7;
+    --color-bg: #000000;
+    /* Deep Black background */
+    --color-accent: #ffffff;
+    --color-secondary: #86868b;
+    --color-border: #333333;
+
+    --card-bg: #1c1c1e;
+    /* Dark dashboard gray */
+    --card-border: #38383a;
+    /* Metallic subtle border */
+    /* Metallic glow effects can be added via box-shadow or borders */
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --card-hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  line-height: 1.5;
+  /* Tighter Apple-like leading */
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+  /* Apple-like tracking */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  min-height: 100vh;
+  padding-top: calc(var(--header-height) + 4rem);
+  /* More whitespace at top */
+}
+
+/* Apple-Style Product Link (Global for Markdown Support) */
+.productLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: #f5f5f7;
+  /* Apple light gray */
+  border-radius: 22px;
+  /* Slightly rounder */
+  padding: 1.25rem;
+  margin: 4rem 0 2rem;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .productLink {
+    background-color: #1c1c1e;
+    /* Apple dark gray */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+.productLink:hover {
+  transform: scale(1.015);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.productInfo {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-align: left;
+  min-width: 0;
+  /* Flexbox text truncation fix */
+}
+
+.productTitle {
+  color: var(--color-fg);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.productDesc {
+  color: var(--color-secondary);
+  font-size: 0.925rem;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.productBtn {
+  background: linear-gradient(145deg, #1a1a1a, #000000);
+  /* Glossy Black */
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.productLink:hover .productBtn {
+  transform: scale(1.05);
+  background: linear-gradient(145deg, #333, #000);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Mobile Layout for Product Link */
+@media (max-width: 600px) {
+  .productLink {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .productImage {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 0.5rem;
+  }
+
+  .productInfo {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .productBtn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

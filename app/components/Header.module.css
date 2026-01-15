@@ -1,0 +1,142 @@
+.headerWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background-color: rgba(255, 255, 255, 0.7);
+    /* More transparent */
+    backdrop-filter: saturate(180%) blur(20px);
+    /* Authentically Apple blur */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    /* Extremely subtle border */
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+    .headerWrapper {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+.headerContent {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 100%;
+}
+
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    z-index: 1001;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.1rem;
+    /* Smaller, understated luxury */
+    letter-spacing: -0.01em;
+    color: var(--color-fg);
+    text-transform: none;
+    /* Apple doesn't typically shout in uppercase */
+}
+
+/* Hamburger Button refined */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    /* Spacing for 3 lines */
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    /* Thinner lines for precision */
+    background: var(--color-fg);
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.open.line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.open.line:nth-child(2) {
+    opacity: 0;
+}
+
+.open.line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Navigation - Mobile Default */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-color: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 2rem 2rem;
+    gap: 1.5rem;
+    transform: translateY(-100%);
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 1000;
+}
+
+.navOpen {
+    transform: translateY(0);
+}
+
+.nav a {
+    font-size: 1.75rem;
+    /* Large mobile menu items */
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+}
+
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+
+    .nav {
+        position: static;
+        height: auto;
+        transform: none;
+        flex-direction: row;
+        background-color: transparent;
+        padding: 0;
+        justify-content: flex-end;
+        gap: 2.5rem;
+    }
+
+    .nav a {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: var(--color-fg);
+        opacity: 0.8;
+        transition: opacity 0.2s;
+    }
+
+    .nav a:hover {
+        opacity: 1;
+    }
+}
