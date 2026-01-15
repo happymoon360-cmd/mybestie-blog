@@ -5,7 +5,7 @@ description: '보조금 반토막 충격! 전비 사수하는 꿀팁과 배터�
 image: '/images/posts/2026-ev-subsidy-saving-tip/image-1.png'
 ---
 
-![2026 전기차 보조금과 유지비 절약, 보조금 축소 대응 전략](/images/posts/2026-ev-subsidy-saving-tip/image-1.png)
+![2026 전기차 보조금과 유지비 절약, 솔라휠 무전력 방향제](/images/posts/2026-ev-subsidy-saving-tip/image-1.png)
 
 ### 3줄 요약
 1. 2026년 전기차 보조금 축소(반토막)로 초기 구매 부담이 커졌습니다.
@@ -18,7 +18,7 @@ image: '/images/posts/2026-ev-subsidy-saving-tip/image-1.png'
 
 차값이 5,300만 원에서 8,500만 원 사이라면 보조금이 딱 절반(50%)만 나오거든요. 이럴 때일수록 초기 구매 비용의 손실을 평소 유지비에서 뽑아내겠다는 전략이 필요해요.
 
-![전기차 보조금 전략, 차값 5300만원 구간 분석](/images/posts/2026-ev-subsidy-saving-tip/image-2.png)
+![전기차 보조금 전략, 차값 5300만원 구간 분석 및 전기차 필수템](/images/posts/2026-ev-subsidy-saving-tip/image-2.png)
 
 ## 2) 고수들만 아는 전기차 전비 늘리는 3단계 루틴
 
@@ -26,7 +26,7 @@ image: '/images/posts/2026-ev-subsidy-saving-tip/image-1.png'
 - **STEP 2. ‘트렁크 비우기’의 마법**: 불필요한 짐 10kg만 덜어내도 전비가 좋아집니다.
 - **STEP 3. ‘대기 전력’ 차단하기**: 상시 전원을 쓰는 USB 등은 생각보다 배터리를 잡아먹습니다.
 
-![전기차 유지비 절약 팁, 전비 관리 노하우](/images/posts/2026-ev-subsidy-saving-tip/image-3.png)
+![전기차 유지비 절약 팁, 전비 관리 노하우와 솔라휠 주차번호판](/images/posts/2026-ev-subsidy-saving-tip/image-3.png)
 
 ## 3) 배터리 아끼는 '무전력' 차량용품 추천
 

@@ -30,7 +30,7 @@ image: '/images/posts/migrated/image-1.png'
 
 그때부터는 내 주차번호판은 그저 '장식품'이 되고 맙니다. 결국 가장 확실한 건, 내 번호를 내가 직접 컨트롤하는 물리적인 방식이에요.
 
-![주차 안심번호 만료 문제와 해결책](/images/posts/migrated/image-3.png)
+![주차 안심번호 만료 문제와 해결책, 솔라휠 주차번호판 사용법](/images/posts/migrated/image-3.png)
 
 ## 주차 매너 점검: 나의 안심번호 관리 상태 체크
 
@@ -38,7 +38,7 @@ image: '/images/posts/migrated/image-1.png'
 
 디지털 서비스는 편리하지만, 물리적인 커버는 '직관적'입니다.
 
-![직관적인 프라이버시 보호 주차 번호판](/images/posts/migrated/image-4.png)
+![직관적인 프라이버시 보호 솔라휠 주차번호판](/images/posts/migrated/image-4.png)
 
 ### 주차번호판 관리에서 자주 하는 실수들
 
@@ -46,7 +46,7 @@ image: '/images/posts/migrated/image-1.png'
 - **너무 작은 안심번호 폰트**: 밖에서 안 보이면 결국 전화를 못 받게 됩니다.
 - **냄새는 방치하고 향기만 채우기**: 차량히터냄새가 스며든 시트에 차랑용방향제를 쏟아붓는다고 해결되지 않듯, 근본적인 보안도 기초부터 다져야 합니다.
 
-![차량용 방향제와 주차 번호판의 조화](/images/posts/migrated/image-5.png)
+![차량용 방향제와 주차 번호판의 조화, 새차 선물 추천](/images/posts/migrated/image-5.png)
 
 "딸깍, 소리 없이 우아하게 가려지는 프라이버시 보호 기능을 확인하세요."
 
