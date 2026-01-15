@@ -1,5 +1,6 @@
 import { getAllPostIds, getPostData } from '../../../lib/posts';
 import styles from './page.module.css';
+import ProductLinkTracker from '../../components/ProductLinkTracker';
 
 export async function generateStaticParams() {
     const paths = getAllPostIds();
@@ -46,6 +47,7 @@ export default async function Post({ params }) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            <ProductLinkTracker />
             <h1 className={styles.title}>{postData.title}</h1>
             <div className={styles.date}>{postData.date}</div>
             <div
