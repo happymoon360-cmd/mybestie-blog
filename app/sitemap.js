@@ -1,7 +1,7 @@
 import { getSortedPostsData } from '../lib/posts';
 
 export default function sitemap() {
-    const baseUrl = 'https://example.com'; // Replace with actual domain
+    const baseUrl = 'https://mybestie-blog.vercel.app';
     const posts = getSortedPostsData();
 
     const blogPosts = posts.map((post) => ({

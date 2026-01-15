@@ -1,5 +1,5 @@
 export default function robots() {
-    const baseUrl = 'https://example.com'; // Replace with actual domain
+    const baseUrl = 'https://mybestie-blog.vercel.app';
 
     return {
         rules: {
