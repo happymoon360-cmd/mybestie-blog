@@ -22,7 +22,7 @@ image: '/images/posts/migrated/image-1.png'
 
 ![디지털 안심번호 서비스의 한계와 주차 번호판](/images/posts/migrated/image-2.png)
 
-## 디지털이 가진 태생적인 불안함
+## 안심번호 서비스의 한계와 디지털 방식의 불안함
 
 안심번호는 일정 기간이 지나면 만료되거나, 서비스 업체에 따라 연결이 원활하지 않을 때가 있어요.
 
@@ -32,7 +32,7 @@ image: '/images/posts/migrated/image-1.png'
 
 ![주차 안심번호 만료 문제와 해결책](/images/posts/migrated/image-3.png)
 
-## 나의 '주차 소통' 건강도 체크 (30초 체크리스트)
+## 주차 매너 점검: 나의 안심번호 관리 상태 체크
 
 결국 '물리적 가림막'이 필요한 이유
 
@@ -40,7 +40,7 @@ image: '/images/posts/migrated/image-1.png'
 
 ![직관적인 프라이버시 보호 주차 번호판](/images/posts/migrated/image-4.png)
 
-### 우리가 흔히 하는 귀여운 실수들
+### 주차번호판 관리에서 자주 하는 실수들
 
 - **만료된 번호 방치하기**: 이건 사실 '안 지키느니만 못한' 매너가 될 수 있어요.
 - **너무 작은 안심번호 폰트**: 밖에서 안 보이면 결국 전화를 못 받게 됩니다.
@@ -52,7 +52,7 @@ image: '/images/posts/migrated/image-1.png'
 
 <video src="/images/posts/migrated/image-7.mp4" controls autoplay loop muted playsinline width="100%"></video>
 
-## 오늘 결론: 당신의 차에게 '단순함의 미학'을 허락하세요
+## 결론: 물리적 주차번호판이 가장 확실한 보안입니다
 
 복잡한 기술이 우리를 지켜줄 것 같지만, 때로는 손으로 직접 가리는 단순한 행동이 가장 완벽한 보안이 되기도 합니다. 차에어컨냄새를 관리하듯 내 번호도 주기적으로 관리해주는 습관이 필요해요.
 

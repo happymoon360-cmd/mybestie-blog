@@ -18,7 +18,7 @@ image: '/images/posts/2026-civil-servant-salary-and-car-item/image-1.png'
 
 ![2026 공무원 봉급표 상세, 직급별 인상액](/images/posts/2026-civil-servant-salary-and-car-item/image-2.png)
 
-## 1) 매달 나가는 '고정 지출'의 함정
+## 1) 매달 나가는 차량 유지비, '고정 지출'의 함정
 
 ![차량 유지비 줄이는 법, 불필요한 차량용품 지출](/images/posts/2026-civil-servant-salary-and-car-item/image-3.png)
 
@@ -26,14 +26,14 @@ image: '/images/posts/2026-civil-servant-salary-and-car-item/image-1.png'
 
 ![차량용 방향제 비용 절약 비교](/images/posts/2026-civil-servant-salary-and-car-item/image-4.png)
 
-## 2) 돈 1원 안 들이고 '쉰내' 잡는 3분 루틴
+## 2) 돈 1원 안 들이고 차에어컨냄새 잡는 3분 루틴
 
 - **✅ 도착 3분 전 송풍 모드 (필수!)**: 내리기 직전에 에어컨(A/C)만 끄고 송풍으로 습기를 말려주세요.
 - **✅ 발 매트 털기**: 눈 녹은 신발, 젖은 우산... 이 습기가 차 안을 눅눅하게 만들거든요.
 
 ![차량 관리 꿀팁, 에어컨 송풍 모드 활용](/images/posts/2026-civil-servant-salary-and-car-item/image-5.png)
 
-## 3) '평생 쓰는' 가성비 끝판왕으로 마무리
+## 3) '평생 쓰는' 가성비 차량용 방향제 추천
 
 ![솔라휠 방향제 추천, 반영구 태양광 차량용 방향제](/images/posts/2026-civil-servant-salary-and-car-item/image-6.png)
 
