@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ProductLinkTracker from './components/ProductLinkTracker';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
                     <Header />
                     {children}
                     <Footer />
+                    <ProductLinkTracker />
                     <Analytics />
                     <GoogleAnalytics gaId="G-J7416MH6YV" />
                 </main>

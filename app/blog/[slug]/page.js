@@ -14,6 +14,7 @@ export async function generateMetadata({ params }) {
     return {
         title: postData.title,
         description: postData.description,
+        keywords: postData.keywords || [],
         openGraph: {
             title: postData.title,
             description: postData.description,
@@ -28,25 +29,52 @@ export default async function Post({ params }) {
     const { slug } = await params;
     const postData = await getPostData(slug);
 
-    const jsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: postData.title,
-        description: postData.description,
-        image: postData.image ? [postData.image] : [],
-        datePublished: postData.date,
-        author: {
-            '@type': 'Person',
-            name: 'Author Name', // You might want to make this dynamic or config based
-        },
-    };
+    const schemas = [
+        {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: postData.title,
+            description: postData.description,
+            keywords: postData.keywords ? postData.keywords.join(', ') : undefined,
+            image: postData.image ? [postData.image] : [],
+            datePublished: postData.date,
+            author: {
+                '@type': 'Organization',
+                name: 'Mybestie',
+            },
+        }
+    ];
+
+    if (postData.product) {
+        schemas.push({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: postData.product.name,
+            image: postData.image ? [postData.image] : [],
+            description: postData.product.description || postData.description,
+            brand: {
+                '@type': 'Brand',
+                name: postData.product.brand,
+            },
+            offers: {
+                '@type': 'Offer',
+                url: 'https://smartstore.naver.com/coolgrandpaw/products/9408767137', // Hardcoded for this demo, or add to frontmatter
+                priceCurrency: postData.product.currency || 'KRW',
+                price: postData.product.price || '0',
+                availability: 'https://schema.org/InStock',
+            },
+        });
+    }
 
     return (
         <article className={styles.article}>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
+            {schemas.map((schema, index) => (
+                <script
+                    key={index}
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                />
+            ))}
             <ProductLinkTracker />
             <h1 className={styles.title}>{postData.title}</h1>
             <div className={styles.date}>{postData.date}</div>
