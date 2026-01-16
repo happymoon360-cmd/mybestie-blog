@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolarWheel Blog-to-Card News Builder</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap');
+
+        body {
+            background-color: #222;
+            color: white;
+            font-family: 'Noto Sans KR', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        /* Instagram Portrait Aspect Ratio 4:5 (1080x1350) scaled down for view */
+        .card {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: #fff;
+            color: #111;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            border-radius: 2px;
+            /* Slight rounding just for UI polish */
+        }
+
+        /* --- Design System: "Premium Dark" --- */
+        .card.premium {
+            background: #111;
+            color: #fff;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 60%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-container {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 40%;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            border-top: 2px solid #333;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            width: fit-content;
+        }
+
+        .headline {
+            font-size: 1.6rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            word-break: keep-all;
+        }
+
+        .subtext {
+            font-size: 0.95rem;
+            color: #aaa;
+            line-height: 1.5;
+            word-break: keep-all;
+        }
+
+        /* Specific Slide Overrides */
+
+        /* Slide 1: Hook (Uses Text Overlay on Image) */
+        .card#slide1 .img-container {
+            height: 100%;
+        }
+
+        .card#slide1 .img-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.9) 100%);
+        }
+
+        .card#slide1 .text-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 30px;
+            right: 30px;
+            z-index: 10;
+        }
+
+        .card#slide1 .huge-text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card#slide1 .highlight {
+            color: #ffeb3b;
+        }
+
+        /* Slide 5: CTA (Gold Theme) */
+        .card#slide5 .text-container {
+            background: linear-gradient(135deg, #000 0%, #1a1a00 100%);
+            border-top: 2px solid gold;
+        }
+
+        .card#slide5 .headline {
+            color: gold;
+        }
+
+        .buy-btn {
+            background: gold;
+            color: black;
+            font-weight: 900;
+            text-align: center;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 50px;
+        }
+
+        /* Branding */
+        .brand-corner {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+            z-index: 20;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📱 Instagram Card News Preview (4:5 Ratio)</h1>
+    <p>Based on Blog Post: "SolarWheel 2in1 Parking Plate"</p>
+
+    <div class="card-grid">
+
+        <!-- Slide 1: The Hook (Problem) -->
+        <!-- Mapped from Blog: "Messy Dashboard Problem" -->
+        <div class="card premium" id="slide1">
+            <div class="brand-corner">SOLARWHEEL</div>
+            <div class="img-container">
+                <img src="../seo-blog/public/images/posts/dashboard-messy-problem.jpg" alt="Messy Dashboard">
+                <div class="text-overlay">
+                    <div class="tag">STOP 🛑</div>
+                    <div class="huge-text">
+                        운전할 때마다<br>
+                        <span class="highlight">거슬리는 대시보드</span>,<br>
+                        언제까지 참으세요?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Solution (Rotation) -->
+        <!-- Mapped from Blog: "Solar Powered Scent" -->
+        <div class="card premium">
+            <div class="brand-corner">SOLARWHEEL</div>
+            <div class="img-container">
+                <img src="../seo-blog/public/images/posts/solarwheel-rotation-demo.gif" alt="Rotation">
+            </div>
+            <div class="text-container">
+                <div class="tag">Solution 01</div>
+                <div class="headline">전기세 0원,<br>무한 동력의 향기</div>
+                <div class="subtext">
+                    태양광 패널이 스스로 회전하며<br>
+                    차량 구석구석 향기를 퍼뜨립니다.<br>
+                    (배터리 폭발 걱정 NO!)
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution (Privacy) -->
+        <!-- Mapped from Blog: "Privacy Number Plate" -->
+        <div class="card premium">
+            <div class="brand-corner">SOLARWHEEL</div>
+            <div class="img-container">
+                <img src="../seo-blog/public/images/posts/solarwheel-privacy-mode.gif" alt="Privacy">
+            </div>
+            <div class="text-container">
+                <div class="tag">Solution 02</div>
+                <div class="headline">소중한 개인정보,<br>숨기세요</div>
+                <div class="subtext">
+                    안심번호 주차번호판 기능 탑재.<br>
+                    필요할 때만 보여주는 '시크릿 모드'로<br>
+                    스팸/범죄로부터 보호하세요.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Social Proof -->
+        <!-- Mapped from Blog: "Reviews" -->
+        <div class="card premium">
+            <div class="brand-corner">SOLARWHEEL</div>
+            <div class="img-container">
+                <img src="../seo-blog/public/images/posts/solarwheel-review-1.png"
+                    style="object-fit: contain; background: #f8f9fa;">
+            </div>
+            <div class="text-container">
+                <div class="tag">Review ★★★★★</div>
+                <div class="headline">"친구들이 차 타면<br>이거 뭐냐고 물어봐요"</div>
+                <div class="subtext">
+                    제네시스, 벤츠 오너분들의 선택.<br>
+                    대시보드 위가 깔끔해지고<br>
+                    인테리어가 살아납니다.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: CTA -->
+        <!-- Mapped from Blog: "Summary" -->
+        <div class="card premium" id="slide5">
+            <div class="brand-corner">SOLARWHEEL</div>
+            <div class="img-container">
+                <img src="../seo-blog/public/images/posts/solarwheel-2in1-main.jpg" alt="Product">
+            </div>
+            <div class="text-container">
+                <div class="tag">Limited Offer</div>
+                <div class="headline">솔라휠 2in1<br>최저가 구매 기회</div>
+                <div class="subtext">
+                    지금 바로 프로필 링크에서 확인하세요.
+                </div>
+                <div class="buy-btn">구매하러 가기 👉</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SolarWheel Card News Exporter (PNG)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #222;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        canvas {
+            width: 270px;
+            height: 337.5px;
+            /* Preview Size (1/4 scale) */
+            border: 1px solid #555;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+
+        button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #ff3333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📸 Generating Downloadable PNGs...</h1>
+    <p>Wait for images to load, then click Download.</p>
+    <div id="output" class="container"></div>
+
+    <script>
+        // Card Data Configuration
+        const CARDS = [
+            {
+                type: 'cover',
+                bg: '../seo-blog/public/images/posts/dashboard-messy-problem.jpg',
+                tag: 'STOP 🛑',
+                headline: '운전할 때마다\n거슬리는 대시보드,\n언제까지 참으세요?',
+                highlightIdx: 1 // Highlight "거슬리는 대시보드"
+            },
+            {
+                type: 'content',
+                bg: '../seo-blog/public/images/posts/solarwheel-rotation-demo.gif',
+                tag: 'Solution 01',
+                headline: '전기세 0원,\n무한 동력의 향기',
+                subtext: '태양광 패널이 스스로 회전하며\n차량 구석구석 향기를 퍼뜨립니다.\n(배터리 폭발 걱정 NO!)'
+            },
+            {
+                type: 'content',
+                bg: '../seo-blog/public/images/posts/solarwheel-privacy-mode.gif',
+                tag: 'Solution 02',
+                headline: '소중한 개인정보,\n숨기세요',
+                subtext: '안심번호 주차번호판 기능 탑재.\n필요할 때만 보여주는 \'시크릿 모드\'로\n스팸/범죄로부터 보호하세요.'
+            },
+            {
+                type: 'review',
+                bg: '../seo-blog/public/images/posts/solarwheel-review-1.png',
+                tag: 'Review ★★★★★',
+                headline: '"친구들이 차 타면\n이거 뭐냐고 물어봐요"',
+                subtext: '제네시스, 벤츠 오너분들의 선택.\n대시보드 위가 깔끔해지고\n인테리어가 살아납니다.'
+            },
+            {
+                type: 'cta',
+                bg: '../seo-blog/public/images/posts/solarwheel-2in1-main.jpg',
+                tag: 'Limited Offer',
+                headline: '솔라휠 2in1\n최저가 구매 기회',
+                subtext: '지금 바로 프로필 링크에서 확인하세요.',
+                ctaText: '구매하러 가기 👉'
+            }
+        ];
+
+        // Canvas Settings
+        const WIDTH = 1080;
+        const HEIGHT = 1350;
+
+        async function init() {
+            await document.fonts.ready; // Wait for fonts
+            const container = document.getElementById('output');
+
+            CARDS.forEach((card, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'card-wrapper';
+
+                const canvas = document.createElement('canvas');
+                canvas.width = WIDTH;
+                canvas.height = HEIGHT;
+                const ctx = canvas.getContext('2d');
+
+                // Initial Fill
+                ctx.fillStyle = '#111';
+                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                // Load Image & Draw
+                const img = new Image();
+                img.src = card.bg;
+                img.crossOrigin = "Anonymous"; // Try to avoid taint issues locally (might fail depending on browser security)
+
+                img.onload = () => {
+                    // Draw formatting based on type
+                    drawLayout(ctx, img, card);
+
+                    // Add Download Button
+                    const btn = document.createElement('button');
+                    btn.innerText = `Download Card #${index + 1}`;
+                    btn.onclick = () => {
+                        const link = document.createElement('a');
+                        link.download = `solarwheel_card_${index + 1}.png`;
+                        link.href = canvas.toDataURL();
+                        link.click();
+                    };
+                    wrapper.appendChild(btn);
+                };
+
+                wrapper.appendChild(canvas);
+                container.appendChild(wrapper);
+            });
+        }
+
+        function drawLayout(ctx, img, card) {
+            // Draw Background Image
+            let imgHeight = HEIGHT * 0.6; // 60% Image
+            let textY = imgHeight;
+            let textHeight = HEIGHT * 0.4;
+
+            // Layout Adjustments
+            if (card.type === 'cover') {
+                imgHeight = HEIGHT;
+                textY = HEIGHT; // Overlay text
+            }
+
+            // Draw Img (Crop/Fill)
+            const scale = Math.max(WIDTH / img.width, imgHeight / img.height);
+            const x = (WIDTH / 2) - (img.width / 2) * scale;
+            const y = (imgHeight / 2) - (img.height / 2) * scale;
+            ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+
+            // Draw Overlays
+            if (card.type === 'cover') {
+                // Gradient Overlay for Cover
+                const grad = ctx.createLinearGradient(0, HEIGHT * 0.4, 0, HEIGHT);
+                grad.addColorStop(0, 'rgba(0,0,0,0)');
+                grad.addColorStop(1, 'rgba(0,0,0,0.9)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, HEIGHT * 0.4, WIDTH, HEIGHT * 0.6);
+            } else {
+                // Solid Background for Text Area
+                ctx.fillStyle = (card.type === 'cta') ? 'linear-gradient(135deg, #000 0%, #1a1a00 100%)' : '#111';
+                if (card.type === 'cta') {
+                    // Canvas doesn't support CSS gradient strings directly in fillStyle easily like that
+                    const grad = ctx.createLinearGradient(0, textY, WIDTH, HEIGHT);
+                    grad.addColorStop(0, '#000');
+                    grad.addColorStop(1, '#1a1a00');
+                    ctx.fillStyle = grad;
+                }
+                ctx.fillRect(0, textY, WIDTH, textHeight);
+                // Top Border
+                ctx.fillStyle = (card.type === 'cta') ? 'gold' : '#333';
+                ctx.fillRect(0, textY, WIDTH, 4);
+            }
+
+            // Draw Logo
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '700 30px "Noto Sans KR"';
+            ctx.textAlign = 'right';
+            ctx.fillText('SOLARWHEEL', WIDTH - 40, 60);
+
+            // Draw Content
+            ctx.textAlign = 'left';
+            let contentX = 80;
+            let currentY = (card.type === 'cover') ? HEIGHT - 300 : textY + 100;
+
+            // 1. Tag
+            ctx.fillStyle = '#ff4d4d'; // Tag BG
+            if (card.type === 'cta') ctx.fillStyle = 'gold';
+
+            // Simple Tag rect? Let's just draw text with background rect manually if needed, 
+            // but for simplicity, let's just color the text brightly or draw a rect.
+            // Rect:
+            ctx.fillRect(contentX, currentY - 50, 200, 60); // Approx
+            ctx.fillStyle = (card.type === 'cta') ? 'black' : 'white';
+            ctx.font = '700 30px "Noto Sans KR"';
+            ctx.fillText(card.tag, contentX + 20, currentY - 10);
+
+            currentY += 80;
+
+            // 2. Headline
+            ctx.fillStyle = (card.type === 'cta') ? 'gold' : 'white';
+            ctx.font = '900 70px "Noto Sans KR"';
+            if (card.type === 'cover') {
+                ctx.font = '900 80px "Noto Sans KR"';
+                ctx.fillStyle = 'white';
+            }
+
+            const lines = card.headline.split('\n');
+            lines.forEach((line, i) => {
+                if (card.type === 'cover' && i === card.highlightIdx) {
+                    ctx.fillStyle = '#ffeb3b';
+                } else if (card.type === 'cover') {
+                    ctx.fillStyle = 'white';
+                }
+
+                // Shadow for cover
+                if (card.type === 'cover') {
+                    ctx.shadowColor = "black";
+                    ctx.shadowBlur = 20;
+                } else {
+                    ctx.shadowBlur = 0;
+                }
+
+                ctx.fillText(line, contentX, currentY);
+                currentY += 90;
+            });
+            ctx.shadowBlur = 0; // Reset
+
+            // 3. Subtext
+            if (card.subtext) {
+                currentY += 20;
+                ctx.fillStyle = '#aaa';
+                ctx.font = '400 35px "Noto Sans KR"';
+                const subLines = card.subtext.split('\n');
+                subLines.forEach(line => {
+                    ctx.fillText(line, contentX, currentY);
+                    currentY += 50;
+                });
+            }
+
+            // 4. Button (CTA)
+            if (card.ctaText) {
+                currentY += 50;
+                ctx.fillStyle = 'gold';
+                ctx.beginPath();
+                ctx.roundRect(contentX, currentY, 400, 100, 50);
+                ctx.fill();
+
+                ctx.fillStyle = 'black';
+                ctx.font = '900 40px "Noto Sans KR"';
+                ctx.textAlign = 'center';
+                ctx.fillText(card.ctaText, contentX + 200, currentY + 65);
+            }
+        }
+
+        // Polyfill for roundRect if needed (Chrome supports it, but simple fallback)
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+                if (w < 2 * r) r = w / 2;
+                if (h < 2 * r) r = h / 2;
+                this.beginPath();
+                this.moveTo(x + r, y);
+                this.arcTo(x + w, y, x + w, y + h, r);
+                this.arcTo(x + w, y + h, x, y + h, r);
+                this.arcTo(x, y + h, x, y + h, r);
+                this.arcTo(x, y, x + r, y, r);
+                this.closePath();
+                return this;
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

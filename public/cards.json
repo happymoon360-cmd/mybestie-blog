@@ -1,0 +1,43 @@
+[
+    {
+        "type": "cover",
+        "file": "dashboard-messy-problem.jpg",
+        "tag": "STOP 🛑",
+        "headline": "운전할 때마다\n거슬리는 대시보드,\n언제까지 참으세요?",
+        "highlightIdx": 1,
+        "tts_text": "운전할 때마다 거슬리는 대시보드, 언제까지 참으세요?"
+    },
+    {
+        "type": "content",
+        "file": "solarwheel-rotation-demo.gif",
+        "tag": "Solution 01",
+        "headline": "전기세 0원,\n무한 동력의 향기",
+        "subtext": "태양광 패널이 스스로 회전하며\n차량 구석구석 향기를 퍼뜨립니다.\n(배터리 폭발 걱정 NO!)",
+        "tts_text": "전기세 0원, 무한 동력의 향기. 태양광 패널이 스스로 회전하며 차량 구석구석 향기를 퍼뜨립니다."
+    },
+    {
+        "type": "content",
+        "file": "solarwheel-privacy-mode.gif",
+        "tag": "Solution 02",
+        "headline": "소중한 개인정보,\n숨기세요",
+        "subtext": "안심번호 주차번호판 기능 탑재.\n필요할 때만 보여주는 '시크릿 모드'로\n스팸/범죄로부터 보호하세요.",
+        "tts_text": "소중한 개인정보, 숨기세요. 안심번호 주차번호판 기능이 탑재되어 있습니다."
+    },
+    {
+        "type": "review",
+        "file": "solarwheel-review-1.png",
+        "tag": "Review ★★★★★",
+        "headline": "\"친구들이 차 타면\n이거 뭐냐고 물어봐요\"",
+        "subtext": "제네시스, 벤츠 오너분들의 선택.\n대시보드 위가 깔끔해지고\n인테리어가 살아납니다.",
+        "tts_text": "친구들이 차 타면 이거 뭐냐고 물어봐요. 제네시스, 벤츠 오너분들의 선택입니다."
+    },
+    {
+        "type": "cta",
+        "file": "solarwheel-2in1-main.jpg",
+        "tag": "Limited Offer",
+        "headline": "솔라휠 2in1\n최저가 구매 기회",
+        "subtext": "지금 바로 프로필 링크에서 확인하세요.",
+        "ctaText": "구매하러 가기 👉",
+        "tts_text": "솔라휠 2in1, 지금 바로 프로필 링크에서 최저가로 만나보세요."
+    }
+]

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SolarWheel Card News Exporter (PNG)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #222;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        canvas {
+            width: 270px;
+            height: 337.5px;
+            /* Preview Size (1/4 scale) */
+            border: 1px solid #555;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+
+        button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #ff3333;
+        }
+
+        .loading-msg {
+            font-size: 1.2rem;
+            color: #ffeb3b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📸 Generating Downloadable PNGs...</h1>
+    <p>Served via Localhost to enable secure downloading.</p>
+    <div id="output" class="container">
+        <div class="loading-msg">Images are processing...</div>
+    </div>
+
+    <script>
+        // Card Data will be loaded from JSON
+        let CARDS = [];
+
+        // Canvas Settings
+        const WIDTH = 1080;
+        const HEIGHT = 1350;
+
+        async function init() {
+            await document.fonts.ready;
+            const container = document.getElementById('output');
+
+            try {
+                const response = await fetch('/cards.json');
+                CARDS = await response.json();
+            } catch (error) {
+                container.innerHTML = '<div style="color:red">Failed to load cards.json</div>';
+                console.error(error);
+                return;
+            }
+
+            container.innerHTML = ''; // Clear loading msg
+
+            CARDS.forEach((card, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'card-wrapper';
+
+                const canvas = document.createElement('canvas');
+                canvas.width = WIDTH;
+                canvas.height = HEIGHT;
+                const ctx = canvas.getContext('2d');
+
+                // Initial Fill
+                ctx.fillStyle = '#111';
+                ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+                const img = new Image();
+                img.src = '/images/posts/' + card.file; // Path prefix for JSON data
+
+                img.onload = () => {
+                    drawLayout(ctx, img, card);
+
+                    const btn = document.createElement('button');
+                    btn.innerText = `Download Card #${index + 1}`;
+                    btn.onclick = () => {
+                        try {
+                            const link = document.createElement('a');
+                            link.download = `solarwheel_card_${index + 1}.png`;
+                            link.href = canvas.toDataURL("image/png");
+                            link.click();
+                        } catch (e) {
+                            alert("Download Failed: " + e.message);
+                        }
+                    };
+                    wrapper.appendChild(btn);
+                };
+
+                img.onerror = () => {
+                    console.error("Failed to load image:", card.bg);
+                    const err = document.createElement('div');
+                    err.innerText = "Error Loading Image";
+                    err.style.color = "red";
+                    wrapper.appendChild(err);
+                }
+
+                wrapper.appendChild(canvas);
+                container.appendChild(wrapper);
+            });
+        }
+
+        function drawLayout(ctx, img, card) {
+            // Layout Configuration
+            const SPLIT_RATIO = 0.50; // 50% Image, 50% Text (Increased text space)
+            const PADDING_X = 80;
+            const BOTTOM_SAFE_ZONE = 180;
+
+            let imgHeight = HEIGHT * SPLIT_RATIO;
+            let textY = imgHeight;
+            let textHeight = HEIGHT - imgHeight;
+
+            if (card.type === 'cover') {
+                imgHeight = HEIGHT;
+                textY = HEIGHT;
+            }
+
+            // Draw Img (Crop/Fill)
+            const scale = Math.max(WIDTH / img.width, imgHeight / img.height);
+            const x = (WIDTH / 2) - (img.width / 2) * scale;
+            const y = (imgHeight / 2) - (img.height / 2) * scale;
+            ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+
+            // Draw Overlays
+            if (card.type === 'cover') {
+                const grad = ctx.createLinearGradient(0, HEIGHT * 0.3, 0, HEIGHT);
+                grad.addColorStop(0, 'rgba(0,0,0,0)');
+                grad.addColorStop(0.7, 'rgba(0,0,0,0.8)');
+                grad.addColorStop(1, 'rgba(0,0,0,0.95)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, HEIGHT * 0.3, WIDTH, HEIGHT * 0.7);
+            } else {
+                ctx.fillStyle = (card.type === 'cta') ? '#0a0a00' : '#111';
+                if (card.type === 'cta') {
+                    const grad = ctx.createLinearGradient(0, textY, WIDTH, HEIGHT);
+                    grad.addColorStop(0, '#111');
+                    grad.addColorStop(1, '#0f0f00'); // Subtle gold tint
+                    ctx.fillStyle = grad;
+                }
+                ctx.fillRect(0, textY, WIDTH, textHeight);
+                // Top Border
+                ctx.fillStyle = (card.type === 'cta') ? 'gold' : '#333';
+                ctx.fillRect(0, textY, WIDTH, 4);
+            }
+
+            // Draw Logo
+            ctx.fillStyle = 'rgba(255,255,255,0.6)';
+            ctx.font = '700 28px "Noto Sans KR"';
+            ctx.textAlign = 'right';
+            ctx.fillText('SOLARWHEEL', WIDTH - 40, 50);
+
+            // Draw Content
+            ctx.textAlign = 'left';
+            let contentX = PADDING_X;
+
+            // Start Content Y
+            let currentY = (card.type === 'cover') ? HEIGHT - BOTTOM_SAFE_ZONE - 400 : textY + 100;
+
+            // 1. Tag
+            ctx.fillStyle = '#ff4d4d';
+            if (card.type === 'cta') ctx.fillStyle = 'gold';
+
+            ctx.fillRect(contentX, currentY - 50, 220, 60);
+
+            ctx.fillStyle = (card.type === 'cta') ? 'black' : 'white';
+            ctx.font = '700 30px "Noto Sans KR"';
+            ctx.fillText(card.tag, contentX + 20, currentY - 10);
+
+            // Increased Gap after Tag
+            currentY += 80;
+
+            // 2. Headline
+            ctx.fillStyle = (card.type === 'cta') ? 'gold' : 'white';
+            ctx.font = '900 65px "Noto Sans KR"';
+            if (card.type === 'cover') {
+                ctx.font = '900 80px "Noto Sans KR"';
+                ctx.fillStyle = 'white';
+            }
+
+            const lines = card.headline.split('\n');
+            lines.forEach((line, i) => {
+                if (card.type === 'cover' && i === card.highlightIdx) {
+                    ctx.fillStyle = '#ffeb3b';
+                } else if (card.type === 'cover') {
+                    ctx.fillStyle = 'white';
+                }
+                if (card.type === 'cover') {
+                    ctx.shadowColor = "black";
+                    ctx.shadowBlur = 20;
+                } else {
+                    ctx.shadowBlur = 0;
+                }
+                ctx.fillText(line, contentX, currentY);
+                currentY += 85; // Line height
+            });
+            ctx.shadowBlur = 0;
+
+            // Increased Gap before Subtext
+            currentY += 30;
+
+            // 3. Subtext
+            if (card.subtext) {
+                ctx.fillStyle = '#bbb';
+                ctx.font = '400 36px "Noto Sans KR"';
+                const subLines = card.subtext.split('\n');
+                subLines.forEach(line => {
+                    ctx.fillText(line, contentX, currentY);
+                    currentY += 55;
+                });
+            }
+
+            // 4. Button (CTA)
+            if (card.ctaText) {
+                currentY += 40; // Gap before button
+                ctx.fillStyle = 'gold';
+                ctx.beginPath();
+                if (ctx.roundRect) {
+                    ctx.roundRect(contentX, currentY, 450, 100, 50);
+                } else {
+                    ctx.rect(contentX, currentY, 450, 100);
+                }
+                ctx.fill();
+
+                ctx.fillStyle = 'black';
+                ctx.font = '900 40px "Noto Sans KR"';
+                ctx.textAlign = 'center';
+                ctx.fillText(card.ctaText, contentX + 225, currentY + 65);
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
